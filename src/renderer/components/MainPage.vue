@@ -9,7 +9,7 @@
         <!--<div class="app-preloader-spinner"></div>-->
         <!--</div>-->
 
-        <li v-for="app in apps" @click="openApp(app)" :class="app.name.toLowerCase()"
+        <li v-for="(app, index) in apps" @click="openApp(index)" :class="app.name.toLowerCase()"
             :title="app.name.toUpperCase()">
                 <span class="app-preloader-wrapper"
                       v-if="loading && activeApp == app.name">
@@ -40,10 +40,10 @@
 
       <div class="app-view-wrapper" v-if="appActive">
 
-        <webview
+        <webview v-for="app in apps" v-show="activeApp === app.name"
                 :preload="preload"
-                id="app-view" :class="'app-view'+activeApp"
-                :src="appUrl" allowpopups>
+                v-bind:id="app.name+'-app-view'" :class="'app-view-webview app-view'+app.name"
+                :src="app.url" allowpopups>
         </webview>
 
       </div>
@@ -117,15 +117,14 @@
         return 'static/images/icon/' + icon
       },
 
-      openApp (app) {
+      openApp (index) {
+        let app = this.apps[index]
         this.activeAppHomeUrl = app.url
         this.appActive = true
-        if (this.activeApp === '') {
-          this.activeApp = app.name
-        }
+        this.activeApp = app.name
 
         let $this = this
-        let webview = document.getElementById('app-view')
+        let webview = document.getElementById(app.name + '-app-view')
 
         // indicate request by displaying loading on top of the app icon
         if (webview !== null) {
@@ -140,13 +139,13 @@
 
         if (this.appActive && this.activeApp !== app.name) {
           localStorage.setItem(this.activeApp, webview.getURL())
-          this.appUrl = (localStorage.getItem(app.name) === null) ? app.url : localStorage.getItem(app.name)
+          app.url = (localStorage.getItem(app.name) === null) ? app.url : localStorage.getItem(app.name)
           this.activeApp = app.name
 
           return true
         }
 
-        this.appUrl = (localStorage.getItem(app.name) === null) ? app.url : localStorage.getItem(app.name)
+        app.url = (localStorage.getItem(app.name) === null) ? app.url : localStorage.getItem(app.name)
       }
     }
   }
@@ -232,7 +231,7 @@
     overflow: hidden;
   }
 
-  #app-view
+  .app-view-webview
   {
     height: 100%;
   }
