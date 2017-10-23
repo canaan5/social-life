@@ -195,6 +195,7 @@
 
   .layout-row {
     height: 100%;
+    margin-bottom: 0;
   }
 
   .left-layout {
