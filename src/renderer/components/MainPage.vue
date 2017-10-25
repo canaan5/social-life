@@ -1,55 +1,53 @@
 <template>
-    <
-    div class="row layout-row">
+    <div class="row layout-row">
 
-    <div class="col s1 left-layout blue-grey darken-4">
+        <div class="col s1 left-layout blue-grey darken-4">
 
-        <ul class="social-icons">
+            <ul class="social-icons">
 
-            <!--<div class="app-preloader-wrapper">-->
-            <!--<div class="app-preloader-spinner"></div>-->
-            <!--</div>-->
+                <!--<div class="app-preloader-wrapper">-->
+                <!--<div class="app-preloader-spinner"></div>-->
+                <!--</div>-->
 
-            <li v-for="(app, index) in apps" @click="openApp(index)" :class="app.name.toLowerCase()"
-                :title="app.name.toUpperCase()">
-                <span class="app-preloader-wrapper"
-                      v-if="loading && activeApp == app.name">
-                    <div class="app-preloader-spinner"></div>
-                </span>
+                <li v-for="(app, index) in apps" @click="openApp(index)" :class="app.name.toLowerCase()"
+                    :title="app.name.toUpperCase()">
+          <span class="app-preloader-wrapper" v-if="loading && activeApp == app.name">
+            <div class="app-preloader-spinner"></div>
+          </span>
 
-                <img id="appIcon" :src="appIcon(app.icon)" alt="">
-            </li>
-        </ul>
+                    <img id="appIcon" :src="appIcon(app.icon)" alt="">
+                </li>
+            </ul>
 
-    </div>
+        </div>
 
-    <div class="col s11 right-layout blue-grey lighten-3 center">
-        <div v-if="!appActive" class="placeholder">
+        <div class="col s11 right-layout blue-grey lighten-3 center">
+            <div v-if="!appActive" class="placeholder">
 
-            <!--LOGO-->
-            <div id="logo" class="blue-grey">
-                <h2>SL</h2>
+                <!--LOGO-->
+                <div id="logo" class="blue-grey">
+                    <h2>SL</h2>
+                </div>
+
+                <h3>
+                    Welcome to <span class="blue-grey-text"><b>Social Life</b></span>
+                </h3>
+                <p>
+                    Social life just got better...
+                </p>
             </div>
 
-            <h3>
-                Welcome to <span class="blue-grey-text"><b>Social Life</b></span>
-            </h3>
-            <p>
-                Social life just got better...
-            </p>
-        </div>
+            <div class="app-view-wrapper" v-if="appActive">
 
-        <div class="app-view-wrapper" v-if="appActive">
+                <webview v-for="app in apps" v-show="activeApp === app.name"
+                         :preload="preload"
+                         v-bind:id="app.name+'-app-view'" :class="'app-view-webview app-view'+app.name"
+                         :src="app.url" allowpopups>
+                </webview>
 
-            <webview v-for="app in apps" v-show="activeApp === app.name"
-                     :preload="preload"
-                     v-bind:id="app.name+'-app-view'" :class="'app-view-webview app-view'+app.name"
-                     :src="app.url" allowpopups>
-            </webview>
+            </div>
 
         </div>
-
-    </div>
 
     </div>
 </template>
@@ -196,6 +194,7 @@
 
     .layout-row {
         height: 100%;
+        margin-bottom: 0;
     }
 
     .left-layout {
