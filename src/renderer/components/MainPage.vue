@@ -33,7 +33,7 @@
         <h3>
           Welcome to <span class="blue-grey-text"><b>Social Life</b></span>
         </h3>
-        <p>
+        <p class="welcome-note2">
           Social life just got better...
         </p>
       </div>
@@ -108,7 +108,8 @@
           {'name': 'WhatsApp', 'icon': 'whatsapp.png', 'url': 'https://web.whatsapp.com'},
           {'name': 'Slack', 'icon': 'slack.png', 'url': 'https://slack.com'},
           {'name': 'Linkedin', 'icon': 'linkedin.png', 'url': 'https://www.linkedin.com'},
-          {'name': 'Youtube', 'icon': 'youtube.png', 'url': 'https://www.youtube.com'}
+          {'name': 'Youtube', 'icon': 'youtube.png', 'url': 'https://www.youtube.com'},
+          {'name': 'Messenger', 'icon': 'messenger.png', 'url': 'https://www.messenger.com'}
         ]
       }
     },
@@ -152,6 +153,8 @@
 </script>
 
 <style>
+
+  @import url('https://fonts.googleapis.com/css?family=Pacifico');
 
   html, body, #app {
     height: 100%;
@@ -315,4 +318,10 @@
     border-right: 3px solid #607d8b;
     border-radius: 100%;
   }
+
+  .blue-grey-text {
+    font-family: 'Pacifico', cursive !important;
+    color: #000 !important;
+  }
+
 </style>
