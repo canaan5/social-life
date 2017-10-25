@@ -29,15 +29,15 @@
                     <h2>SL</h2>
                 </div>
 
-                <h3>
-                    Welcome to <span class="blue-grey-text"><b>Social Life</b></span>
-                </h3>
-                <p>
-                    Social life just got better...
-                </p>
-            </div>
+                    <h3>
+                      Welcome to <span class="blue-grey-text"><b>Social Life</b></span>
+                    </h3>
+                    <p class="welcome-note2">
+                      Social life just got better...
+                    </p>
+                  </div>
 
-            <div class="app-view-wrapper" v-if="appActive">
+                <div class="app-view-wrapper" v-if="appActive">
 
                 <webview v-for="app in apps" v-show="activeApp === app.name"
                          :preload="preload"
@@ -53,6 +53,7 @@
 </template>
 
 <script>
+
     const path = require('path')
 
     export default {
@@ -107,7 +108,8 @@
                     {'name': 'WhatsApp', 'icon': 'whatsapp.png', 'url': 'https://web.whatsapp.com'},
                     {'name': 'Slack', 'icon': 'slack.png', 'url': 'https://slack.com'},
                     {'name': 'Linkedin', 'icon': 'linkedin.png', 'url': 'https://www.linkedin.com'},
-                    {'name': 'Youtube', 'icon': 'youtube.png', 'url': 'https://www.youtube.com'}
+                    {'name': 'Youtube', 'icon': 'youtube.png', 'url': 'https://www.youtube.com'},
+                    {'name': 'Messenger', 'icon': 'messenger.png', 'url': 'https://www.messenger.com'}
                 ]
             }
         },
@@ -151,6 +153,8 @@
 </script>
 
 <style>
+
+    @import url('https://fonts.googleapis.com/css?family=Pacifico');
 
     html, body, #app {
         height: 100%;
