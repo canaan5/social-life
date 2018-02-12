@@ -198,7 +198,7 @@
 
     .layout-row {
         height: 100%;
-        margin-bottom: 0;
+        margin-bottom: 0 !important;
     }
 
     .left-layout {
